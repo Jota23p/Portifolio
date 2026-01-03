@@ -3,85 +3,611 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>João Pedro | Desenvolvedor</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'teal-light': '#a4fff7',
-                        'teal-medium1': '#68ddbd',
-                        'teal-medium2': '#03bb85',
-                        'teal-dark1': '#038554',
-                        'teal-dark2': '#005227'
-                    }
-                }
+    <title>João Pedro | Estudante de ADS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent: #3b82f6;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15), transparent);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-info {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .info-item {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s;
+        }
+
+        .info-item:hover {
+            border-color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .info-item i {
+            color: var(--primary-color);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .info-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .skill-category h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-category i {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .project-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+        }
+
+        .project-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-body {
+            padding: 2rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-badge {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            flex: 1;
+            padding: 0.8rem;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .project-link.github {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .project-link.github:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-card a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            word-break: break-all;
+        }
+
+        .contact-card a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--card-bg);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                border-top: 1px solid rgba(99, 102, 241, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            .skills-grid,
+            .projects-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
-    </script>
-    <style>
-        html {
-            scroll-behavior: smooth;
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #a4fff7 0%, #68ddbd 100%);
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="bg-white text-gray-800 font-sans">
+<body>
     <!-- Header -->
-    <header class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-teal-dark2">João Pedro</div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="text-teal-dark1 hover:text-teal-medium2 transition-colors">Home</a>
-                <a href="#sobre" class="text-teal-dark1 hover:text-teal-medium2 transition-colors">Sobre</a>
-                <a href="#projetos" class="text-teal-dark1 hover:text-teal-medium2 transition-colors">Projetos</a>
-                <a href="#contato" class="text-teal-dark1 hover:text-teal-medium2 transition-colors">Contato</a>
-            </div>
-            <div class="flex space-x-4">
-                <a href="https://linkedin.com" target="_blank" class="text-teal-dark1 hover:text-teal-medium2 transition-colors">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                </a>
-                <a href="https://github.com" target="_blank" class="text-teal-dark1 hover:text-teal-medium2 transition-colors">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
-            </div>
+    <header>
+        <nav>
+            <div class="logo">JP.dev</div>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="closeMenu()">Início</a></li>
+                <li><a href="#about" onclick="closeMenu()">Sobre</a></li>
+                <li><a href="#skills" onclick="closeMenu()">Habilidades</a></li>
+                <li><a href="#projects" onclick="closeMenu()">Projetos</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Contato</a></li>
+            </ul>
         </nav>
     </header>
 
-    <!-- Home Section -->
-    <section id="home" class="pt-20 min-h-screen flex items-center gradient-bg">
-        <div class="container mx-auto px-6 py-20">
-            <div class="flex flex-col lg:flex-row items-center justify-between">
-                <div class="lg:w-1/2 mb-10 lg:mb-0">
-                    <h1 class="text-5xl lg:text-6xl font-bold text-teal-dark2 mb-6">
-                        João Pedro
-                        <span class="block text-3xl lg:text-4xl text-teal-dark1 mt-2">Aspirante a Desenvolvedor</span>
-                    </h1>
-                    <p class="text-xl text-teal-dark1 mb-8 leading-relaxed">
-                        Estudante de ADS com paixão por tecnologia e foco em soluções inovadoras
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#projetos" class="bg-teal-medium2 text-white px-8 py-3 rounded-lg hover:bg-teal-dark1 transition-colors text-center">
-                            Ver Projetos
-                        </a>
-                        <a href="#contato" class="border-2 border-teal-medium2 text-teal-medium2 px-8 py-3 rounded-lg hover:bg-teal-medium2 hover:text-white transition-colors text-center">
-                            Entre em Contato
-                        </a>
-                    </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Olá, eu sou João Pedro</h1>
+                <p class="subtitle">Estudante de Análise e Desenvolvimento de Sistemas</p>
+                <p>Apaixonado por tecnologia desde a infância, estou em constante aprendizado com foco em programação, desenvolvimento web e back-end. Busco oportunidades para aplicar meus conhecimentos em projetos reais e evoluir como desenvolvedor.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Entre em Contato
+                    </a>
+                    <a href="https://github.com/Jota23p" target="_blank" class="btn btn-secondary">
+                        <i class="fab fa-github"></i> Ver GitHub
+                    </a>
                 </div>
-                <div class="lg:w-1/2 flex justify-center">
-                    <div class="w-80 h-80 bg-white rounded-full shadow-2xl flex items-center justify-center">
-                        <div class="w-72 h-72 bg-teal-light rounded-full flex items-center justify-center">
-                            <svg class="w-32 h-32 text-teal-dark1" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                            </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title reveal">Sobre Mim</h2>
+            <p class="section-subtitle reveal">Conheça um pouco mais sobre minha trajetória</p>
+            <div class="about-content">
+                <div class="about-text reveal">
+                    <p>Sou estudante de Análise e Desenvolvimento de Sistemas na FAMETRO, com previsão de conclusão em julho de 2027. Minha paixão por tecnologia começou na infância e hoje busco transformá-la em carreira profissional.</p>
+                    <p>Tenho experiência prática em desenvolvimento com Python, C, HTML, CSS e versionamento com Git/GitHub. Também possuo conhecimentos em montagem e manutenção de computadores, além de domínio avançado do Pacote Office.</p>
+                    <p>Busco uma oportunidade de estágio no período da tarde (a partir das 13h) para aplicar meus conhecimentos técnicos, aprender com profissionais experientes e contribuir com projetos que gerem impacto real.</p>
+                </div>
+                <div class="about-info reveal">
+                    <div class="info-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <p class="info-label">Formação</p>
+                            <p class="info-value">Análise e Desenvolvimento de Sistemas</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-university"></i>
+                        <div>
+                            <p class="info-label">Instituição</p>
+                            <p class="info-value">FAMETRO - Manaus/AM</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-calendar"></i>
+                        <div>
+                            <p class="info-label">Conclusão</p>
+                            <p class="info-value">Julho de 2027</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-briefcase"></i>
+                        <div>
+                            <p class="info-label">Disponibilidade</p>
+                            <p class="info-value">Estágio - Tarde (13h+)</p>
                         </div>
                     </div>
                 </div>
@@ -89,241 +615,170 @@
         </div>
     </section>
 
-    <!-- Sobre Section -->
-    <section id="sobre" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center text-teal-dark2 mb-16">Sobre Mim</h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-2xl shadow-lg p-8 mb-12">
-                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                        Desde criança, sempre fui fascinado por tecnologia e pela forma como ela pode transformar o mundo. Atualmente, estudo <strong>Análise e Desenvolvimento de Sistemas na FAMETRO</strong>, onde estou construindo uma base sólida em programação e desenvolvimento.
-                    </p>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                        Aos 18 anos, moro em <strong>Manaus, Amazonas</strong>, e estou em busca do meu primeiro estágio em programação. Tenho disponibilidade para trabalhar no período da tarde, <strong>a partir das 13:00</strong>, o que me permite conciliar estudos e experiência prática.
-                    </p>
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        Minha ambição é crescer como desenvolvedor, contribuir para projetos inovadores e fazer parte de uma equipe que valoriza o aprendizado contínuo e a excelência técnica.
-                    </p>
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title reveal">Habilidades Técnicas</h2>
+            <p class="section-subtitle reveal">Tecnologias e competências que domino</p>
+            <div class="skills-grid">
+                <div class="skill-category reveal">
+                    <h3><i class="fas fa-code"></i> Linguagens</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C</span>
+                    </div>
                 </div>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Habilidades Técnicas -->
-                    <div class="bg-white rounded-xl shadow-lg p-6">
-                        <div class="w-12 h-12 bg-teal-light rounded-lg flex items-center justify-center mb-4">
-                            <svg class="w-6 h-6 text-teal-dark1" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-teal-dark2 mb-4">Técnicas</h3>
-                        <ul class="space-y-2 text-gray-700">
-                            <li>• Python</li>
-                            <li>• C</li>
-                            <li>• HTML & CSS</li>
-                            <li>• XML</li>
-                            <li>• Git & GitHub</li>
-                        </ul>
+                <div class="skill-category reveal">
+                    <h3><i class="fas fa-laptop-code"></i> Desenvolvimento Web</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">XML</span>
                     </div>
-
-                    <!-- Ferramentas -->
-                    <div class="bg-white rounded-xl shadow-lg p-6">
-                        <div class="w-12 h-12 bg-teal-light rounded-lg flex items-center justify-center mb-4">
-                            <svg class="w-6 h-6 text-teal-dark1" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-teal-dark2 mb-4">Ferramentas</h3>
-                        <ul class="space-y-2 text-gray-700">
-                            <li>• Pacote Office</li>
-                            <li>• Excel Avançado</li>
-                            <li>• Windows</li>
-                            <li>• Segurança Digital</li>
-                        </ul>
+                </div>
+                <div class="skill-category reveal">
+                    <h3><i class="fab fa-git-alt"></i> Versionamento</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
                     </div>
-
-                    <!-- Soft Skills -->
-                    <div class="bg-white rounded-xl shadow-lg p-6">
-                        <div class="w-12 h-12 bg-teal-light rounded-lg flex items-center justify-center mb-4">
-                            <svg class="w-6 h-6 text-teal-dark1" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-teal-dark2 mb-4">Soft Skills</h3>
-                        <ul class="space-y-2 text-gray-700">
-                            <li>• Pensamento Crítico</li>
-                            <li>• Adaptabilidade</li>
-                            <li>• Comunicação Clara</li>
-                            <li>• Aprendizado Contínuo</li>
-                        </ul>
+                </div>
+                <div class="skill-category reveal">
+                    <h3><i class="fas fa-tools"></i> Outros Conhecimentos</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Montagem de PCs</span>
+                        <span class="skill-tag">Windows</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projetos Section -->
-    <section id="projetos" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center text-teal-dark2 mb-16">Meus Projetos</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Projeto 1 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                    <div class="h-48 bg-gradient-to-br from-teal-light to-teal-medium1"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-teal-dark2 mb-3">Máquina de Vendas</h3>
-                        <p class="text-gray-600 mb-4">Sistema simulador de máquina de vendas desenvolvido em Python com interface intuitiva.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-teal-light text-teal-dark1 px-3 py-1 rounded-full text-sm">Python</span>
-                            <span class="bg-teal-light text-teal-dark1 px-3 py-1 rounded-full text-sm">POO</span>
-                        </div>
-                        <a href="#" class="bg-teal-medium2 text-white px-4 py-2 rounded-lg hover:bg-teal-dark1 transition-colors inline-block">
-                            Ver Projeto
-                        </a>
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title reveal">Projetos</h2>
+            <p class="section-subtitle reveal">Alguns dos meus trabalhos recentes</p>
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <h3>Visom App</h3>
                     </div>
-                </div>
-
-                <!-- Projeto 2 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                    <div class="h-48 bg-gradient-to-br from-teal-medium1 to-teal-medium2"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-teal-dark2 mb-3">Sistema de Cadastro</h3>
-                        <p class="text-gray-600 mb-4">Aplicação para gerenciamento de cadastros com validação de dados e interface web.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-teal-light text-teal-dark1 px-3 py-1 rounded-full text-sm">HTML</span>
-                            <span class="bg-teal-light text-teal-dark1 px-3 py-1 rounded-full text-sm">CSS</span>
-                            <span class="bg-teal-light text-teal-dark1 px-3 py-1 rounded-full text-sm">Python</span>
+                    <div class="project-body">
+                        <p class="project-description">Aplicativo desenvolvido com TypeScript focado em melhorar a experiência do usuário através de interface moderna e funcional. Projeto que explora conceitos de desenvolvimento mobile e boas práticas de programação.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">Mobile</span>
                         </div>
-                        <a href="#" class="bg-teal-medium2 text-white px-4 py-2 rounded-lg hover:bg-teal-dark1 transition-colors inline-block">
-                            Ver Projeto
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Projeto 3 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                    <div class="h-48 bg-gradient-to-br from-teal-medium2 to-teal-dark1"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-teal-dark2 mb-3">Calculadora Científica</h3>
-                        <p class="text-gray-600 mb-4">Calculadora com funções avançadas desenvolvida em C com interface de linha de comando.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-teal-light text-teal-dark1 px-3 py-1 rounded-full text-sm">C</span>
-                            <span class="bg-teal-light text-teal-dark1 px-3 py-1 rounded-full text-sm">Algoritmos</span>
-                        </div>
-                        <a href="#" class="bg-teal-medium2 text-white px-4 py-2 rounded-lg hover:bg-teal-dark1 transition-colors inline-block">
-                            Ver Projeto
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contato Section -->
-    <section id="contato" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center text-teal-dark2 mb-16">Entre em Contato</h2>
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
-                <!-- Formulário -->
-                <div class="bg-white rounded-xl shadow-lg p-8">
-                    <h3 class="text-2xl font-semibold text-teal-dark2 mb-6">Envie uma Mensagem</h3>
-                    <form class="space-y-6">
-                        <div>
-                            <label class="block text-gray-700 font-medium mb-2">Nome</label>
-                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-medium2" placeholder="Seu nome completo">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 font-medium mb-2">Email</label>
-                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-medium2" placeholder="seu@email.com">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 font-medium mb-2">Mensagem</label>
-                            <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-medium2" placeholder="Sua mensagem..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-teal-medium2 text-white py-3 rounded-lg hover:bg-teal-dark1 transition-colors">
-                            Enviar Mensagem
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Informações de Contato -->
-                <div class="space-y-8">
-                    <div class="bg-white rounded-xl shadow-lg p-8">
-                        <h3 class="text-2xl font-semibold text-teal-dark2 mb-6">Informações de Contato</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 bg-teal-light rounded-lg flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-teal-dark1" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="font-medium text-gray-800">Email</p>
-                                    <p class="text-teal-dark1">joaopedro.mn23@gmail.com</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 bg-teal-light rounded-lg flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-teal-dark1" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="font-medium text-gray-800">Localização</p>
-                                    <p class="text-teal-dark1">Manaus, Amazonas</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 bg-teal-light rounded-lg flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-teal-dark1" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
-                                        <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="font-medium text-gray-800">Disponibilidade</p>
-                                    <p class="text-teal-dark1">A partir das 13:00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl shadow-lg p-8">
-                        <h3 class="text-xl font-semibold text-teal-dark2 mb-4">Redes Sociais</h3>
-                        <div class="flex space-x-4">
-                            <a href="https://www.linkedin.com/in/jo%C3%A3opedromn/" target="_blank" class="bg-teal-medium2 text-white p-3 rounded-lg hover:bg-teal-dark1 transition-colors">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                </svg>
-                            </a>
-                            <a href="https://github.com/Jota23p" target="_blank" class="bg-teal-medium2 text-white p-3 rounded-lg hover:bg-teal-dark1 transition-colors">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
+                        <div class="project-links">
+                            <a href="https://github.com/Jota23p/Visom-APP" target="_blank" class="project-link github">
+                                <i class="fab fa-github"></i> Ver Código
                             </a>
                         </div>
                     </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <h3>Simulador de Máquina de Vendas</h3>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">Projeto acadêmico desenvolvido em Python que simula o funcionamento completo de uma máquina de vendas automática, incluindo seleção de produtos, processamento de pagamento e controle de estoque. Aplicação de lógica de programação e estruturas de dados.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Lógica</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Jota23p/simulador-maquina-vendas" target="_blank" class="project-link github">
+                                <i class="fab fa-github"></i> Ver Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <h3>Portfólio Web</h3>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">Site pessoal desenvolvido com HTML e CSS para apresentar projetos e habilidades. Projeto focado em design responsivo e experiência do usuário, demonstrando conhecimentos em desenvolvimento front-end.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">HTML5</span>
+                            <span class="tech-badge">CSS3</span>
+                            <span class="tech-badge">Responsivo</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Jota23p/Portifolio" target="_blank" class="project-link github">
+                                <i class="fab fa-github"></i> Ver Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title reveal">Entre em Contato</h2>
+            <p class="section-subtitle reveal">Vamos conversar sobre oportunidades de estágio</p>
+            <div class="contact-grid">
+                <div class="contact-card reveal">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <a href="mailto:joaopedro.mn23@gmail.com">joaopedro.mn23@gmail.com</a>
+                </div>
+                <div class="contact-card reveal">
+                    <i class="fas fa-phone"></i>
+                    <h3>Telefone</h3>
+                    <a href="tel:+5592985251999">(92) 98525-1999</a>
+                </div>
+                <div class="contact-card reveal">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn</h3>
+                    <a href="https://linkedin.com/in/joãopedromn" target="_blank">linkedin.com/in/joãopedromn</a>
+                </div>
+                <div class="contact-card reveal">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/Jota23p" target="_blank">github.com/Jota23p</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-teal-dark2 text-white py-8">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <p>&copy; 2025 João Pedro. Todos os direitos reservados.</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="https://www.linkedin.com/in/jo%C3%A3opedromn/" target="_blank" class="hover:text-teal-light transition-colors">LinkedIn</a>
-                    <a href="https://github.com/Jota23p" target="_blank" class="hover:text-teal-light transition-colors">GitHub</a>
-                    <a href="mailto:joaopedro.mn23@gmail.com" class="hover:text-teal-light transition-colors">Email</a>
-                </div>
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/Jota23p" target="_blank" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/joãopedromn" target="_blank" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:joaopedro.mn23@gmail.com" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
             </div>
+            <p>&copy; 2026 João Pedro. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling para links de navegação
+        // Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+
+        // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -337,36 +792,44 @@
             });
         });
 
-        // Formulário de contato
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Obrigado pela mensagem! Em breve entrarei em contato.');
-            this.reset();
-        });
+        // Scroll Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
 
-        // Efeito de destaque na navegação baseado na seção atual
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', reveal);
+        reveal(); // Initial check
+
+        // Active Nav Link
+        window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            const navLinks = document.querySelectorAll('.nav-links a');
             
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
+                if (window.pageYOffset >= sectionTop - 200) {
                     current = section.getAttribute('id');
                 }
             });
 
             navLinks.forEach(link => {
-                link.classList.remove('text-teal-medium2');
-                link.classList.add('text-teal-dark1');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.remove('text-teal-dark1');
-                    link.classList.add('text-teal-medium2');
+                link.style.color = 'var(--text-secondary)';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.color = 'var(--primary-color)';
                 }
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'977eb6e7c6a5c757',t:'MTc1NjY2NjIzNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
